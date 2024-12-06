@@ -21,9 +21,8 @@ class Producer:
         self.routing_key = kwargs.get('routing_key')
         if not self.routing_key:
             raise Exception('Queue name is required')
-        self.__connect()
 
-    def __connect(self):
+    def connect(self):
         credentials = pika.PlainCredentials(self.user, self.password)
         parameters = pika.ConnectionParameters(self.host, self.port, self.vhost, credentials)
         self.__connection = pika.BlockingConnection(parameters)
